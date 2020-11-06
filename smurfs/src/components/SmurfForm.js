@@ -9,6 +9,10 @@ class SmurfForm extends React.Component {
         console.log('mounting form')
     }
 
+    handleSubmit(event) {
+        event.preventDefault()
+    }
+
     render() {
         return (
             <form onSubmit={() => this.props.submitSmurf(this.props.formValues)}>
