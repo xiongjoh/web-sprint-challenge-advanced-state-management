@@ -14,8 +14,10 @@ class SmurfList extends React.Component {
     render() {
         return(
             <div>Hi
-                {this.props.SmurfsData 
-                && this.props.SmurfsData.map(smurf => <Smurf key={smurf.id} smurf={smurf}/>)}
+                <p style={{color:"red"}}>{this.props.error && this.props.error}</p>
+                {(this.props.SmurfsData)
+                && this.props.SmurfsData.map(smurf => <Smurf key={smurf.id} smurf={smurf}/>)
+                }
             </div>
         )
     }
