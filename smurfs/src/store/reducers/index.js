@@ -51,7 +51,7 @@ const formReducer = (state = initialSmurfForm, action) => {
         case POST_SMURF_SUCCESS:
             return initialSmurfForm
         case POST_SMURF_FAIL:
-            return state
+            return {...initialSmurfForm, error:action.payload}
         default:
             return state
     }

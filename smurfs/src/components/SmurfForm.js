@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { changeForm, submitSmurf } from '../store/actions'
+import { changeForm, submitSmurf, fetchSmurf } from '../store/actions'
 
 class SmurfForm extends React.Component {
     
@@ -15,7 +15,12 @@ class SmurfForm extends React.Component {
 
     render() {
         return (
-            <form onSubmit={() => this.props.submitSmurf(this.props.formValues)}>
+            <form onSubmit={(e) => {
+                // debugger
+                e.preventDefault()
+                this.props.submitSmurf(this.props.formValues)
+                this.props.fetchSmurf()
+                }}>
                 <label> Name:
                     <input 
                     type='text'
@@ -41,6 +46,7 @@ class SmurfForm extends React.Component {
                     />
                 </label>
                 <button>Submit Smurf</button>
+                <p style={{color:'blue'}}>{this.props.formValues.error && this.props.formValues.error}</p>
             </form>
         )
     }
@@ -52,4 +58,4 @@ const mapStateToProps = (state) => {
     }
 } 
 
-export default connect( mapStateToProps, {changeForm, submitSmurf})(SmurfForm)
+export default connect( mapStateToProps, {changeForm, submitSmurf, fetchSmurf})(SmurfForm)

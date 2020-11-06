@@ -35,12 +35,13 @@ export const submitSmurf = (smurf) => {
     return(dispatch) => {
         axios.post(`http://localhost:3333/smurfs`, smurf)
         .then(res => {
-            debugger
             console.log(res)
             dispatch({type:POST_SMURF_SUCCESS})
         })
         .catch(err => {
-            console.log(err)
+            // debugger
+            console.log(err.response.data.Error)
+            dispatch({type:POST_SMURF_FAIL, payload:err.response.data.Error})
         })
     }
 }
