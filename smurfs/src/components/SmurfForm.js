@@ -1,6 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import { changeForm, submitSmurf } from '../store/actions'
+
 class SmurfForm extends React.Component {
     
     componentDidMount() {
@@ -9,15 +11,30 @@ class SmurfForm extends React.Component {
 
     render() {
         return (
-            <form>
+            <form onSubmit={() => this.props.submitSmurf(this.props.formValues)}>
                 <label> Name:
-                    <input />
+                    <input 
+                    type='text'
+                    name='name'
+                    value={this.props.formValues.name}
+                    onChange={this.props.changeForm}
+                    />
                 </label>
                 <label> Age:
-                    <input />
+                    <input 
+                    type='text'
+                    name='age'
+                    value={this.props.formValues.age}
+                    onChange={this.props.changeForm}
+                    />
                 </label>
                 <label> Height:
-                    <input />
+                    <input 
+                    type='text'
+                    name='height'
+                    value={this.props.formValues.height}
+                    onChange={this.props.changeForm}
+                    />
                 </label>
                 <button>Submit Smurf</button>
             </form>
@@ -25,4 +42,10 @@ class SmurfForm extends React.Component {
     }
 }
 
-export default connect()(SmurfForm)
+const mapStateToProps = (state) => {
+    return {
+        formValues: state.formReducer
+    }
+} 
+
+export default connect( mapStateToProps, {changeForm, submitSmurf})(SmurfForm)
